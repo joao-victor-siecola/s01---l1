@@ -1,0 +1,8 @@
+10 RANDOMIZE
+20 LET X = INT(RND*101)   ' número secreto entre 0 e 100
+30 PRINT "Tente adivinhar o número (0 a 100)."
+40 INPUT "Seu palpite: ", P
+50 IF P = X THEN PRINT "Parabéns, você acertou!": END
+60 IF P < X THEN PRINT "O número é MAIOR que "; P
+70 IF P > X THEN PRINT "O número é MENOR que "; P
+80 GOTO 40

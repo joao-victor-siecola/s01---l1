@@ -1,0 +1,4 @@
+10 INPUT "Digite a altura (em metros): ", H
+20 INPUT "Digite o peso (em kg): ", P
+30 LET IMC = P / (H * H)
+40 PRINT "Seu IMC é: "; IMC
