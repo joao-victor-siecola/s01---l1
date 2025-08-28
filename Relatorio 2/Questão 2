@@ -1,0 +1,13 @@
+function maiorValor(tabela)
+    local maior = tabela[1]
+    for i = 2, #tabela do
+        if tabela[i] > maior then
+            maior = tabela[i]
+        end
+    end
+    return maior
+end
+
+-- Exemplo de uso
+local numeros = {5, 12, 7, 30, 18}
+print("Maior número da tabela: " .. maiorValor(numeros))
