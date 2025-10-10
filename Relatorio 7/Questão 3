@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+
+class Feitico
+{
+    public string Nome { get; set; }
+
+    public Feitico(string nome)
+    {
+        Nome = nome;
+    }
+}
+
+class Grimorio
+{
+    private List<Feitico> feitiços = new List<Feitico>();
+
+    public void AdicionarFeitico(Feitico f)
+    {
+        feitiços.Add(f);
+    }
+
+    public void ListarFeiticos()
+    {
+        Console.WriteLine("Feitiços do Grimório:");
+        foreach (var f in feitiços)
+            Console.WriteLine($"- {f.Nome}");
+    }
+}
+
+class Ferramenta
+{
+    public string Nome { get; set; }
+
+    public Ferramenta(string nome)
+    {
+        Nome = nome;
+    }
+}
+
+class Maga
+{
+    private Grimorio grimorio;
+    private List<Ferramenta> ferramentas;
+
+    public Maga(List<Ferramenta> ferramentas)
+    {
+        grimorio = new Grimorio();
+        this.ferramentas = ferramentas;
+    }
+
+    public Grimorio GetGrimorio() => grimorio;
+
+    public void MostrarFerramentas()
+    {
+        Console.WriteLine("Ferramentas de Frieren:");
+        foreach (var f in ferramentas)
+            Console.WriteLine($"- {f.Nome}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Ferramenta> ferramentas = new List<Ferramenta>
+        {
+            new Ferramenta("Lanterna"),
+            new Ferramenta("Corda"),
+            new Ferramenta("Capacete")
+        };
+
+        Maga frieren = new Maga(ferramentas);
+        Grimorio grimorio = frieren.GetGrimorio();
+
+        grimorio.AdicionarFeitico(new Feitico("Bola de Fogo"));
+        grimorio.AdicionarFeitico(new Feitico("Barreira Mágica"));
+
+        grimorio.ListarFeiticos();
+        frieren.MostrarFerramentas();
+    }
+}
