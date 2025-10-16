@@ -1,0 +1,38 @@
+from abc import ABC, abstractmethod
+
+class Heroi(ABC):
+    def __init__(self, nome, funcao):
+        self.nome = nome
+        self.funcao = funcao
+
+    @abstractmethod
+    def usar_ultimate(self):
+        pass
+
+
+class Tanque(Heroi):
+    def usar_ultimate(self):
+        print(f"{self.nome} (Tanque) ativa o escudo indestrutível!")
+
+
+class Dano(Heroi):
+    def usar_ultimate(self):
+        print(f"{self.nome} (Dano) dispara uma chuva de balas!")
+
+
+if __name__ == "__main__":
+    qtd = int(input("Quantos heróis deseja cadastrar? "))
+    herois = []
+
+    for i in range(qtd):
+        nome = input(f"\nNome do herói {i+1}: ")
+        tipo = input("Função (Tanque/Dano): ").lower()
+
+        if tipo == "tanque":
+            herois.append(Tanque(nome, "Tanque"))
+        else:
+            herois.append(Dano(nome, "Dano"))
+
+    print("\nUsando ultimates:")
+    for h in herois:
+        h.usar_ultimate()
