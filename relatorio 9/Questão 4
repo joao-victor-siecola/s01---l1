@@ -1,0 +1,59 @@
+module Rastreavel
+  def obter_localizacao(hora)
+    puts "#{@nome} foi localizado às #{hora} em #{@localizacao}."
+  end
+end
+
+module Perigoso
+  def calcular_risco
+    rand(1..10)
+  end
+end
+
+class Participante
+  attr_accessor :nome, :localizacao
+
+  def initialize(nome, localizacao)
+    @nome = nome
+    @localizacao = localizacao
+  end
+end
+
+class Detetive < Participante
+  include Rastreavel
+end
+
+class MestreDoCrime < Participante
+  include Rastreavel
+  include Perigoso
+end
+
+class Cenario
+  def initialize(participantes)
+    @participantes = participantes
+  end
+
+  def identificar_ameacas
+    @participantes.select { |p| p.respond_to?(:calcular_risco) }
+  end
+end
+
+# MAIN
+print "Localização de Sherlock: "
+loc_sherlock = gets.chomp
+print "Localização de Moriarty: "
+loc_moriarty = gets.chomp
+
+sherlock = Detetive.new("Sherlock Holmes", loc_sherlock)
+moriarty = MestreDoCrime.new("Moriarty", loc_moriarty)
+
+cenario = Cenario.new([sherlock, moriarty])
+
+puts "\n Localizações:"
+sherlock.obter_localizacao("14:00")
+moriarty.obter_localizacao("14:00")
+
+puts "\n Ameaças detectadas:"
+cenario.identificar_ameacas.each do |p|
+  puts "#{p.nome} tem nível de risco #{p.calcular_risco}"
+end
