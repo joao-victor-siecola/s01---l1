@@ -1,6 +1,6 @@
 class MicroondasUnidade
   def aquecer_por
-    puts "🔆 A unidade está aquecendo por 5 segundos..."
+    puts " A unidade está aquecendo por 5 segundos..."
   end
 end
 
@@ -49,3 +49,4 @@ tm.enviar_dmail
 print "\nDigite um horário de corte (ex: 09:00): "
 corte = gets.chomp
 tm.listar_dmails(corte)
+
