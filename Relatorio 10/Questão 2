@@ -38,7 +38,7 @@ class Esquadrao {
   }
 
   iniciarMissao() {
-    console.log("\n🚀 Missão iniciada!");
+    console.log("Missão iniciada!");
     this.soldados.forEach((s) => {
       s.explorar();
       s.usarODM();
@@ -56,3 +56,4 @@ for (let i = 0; i < qtd; i++) {
 }
 
 esquadrao.iniciarMissao();
+
