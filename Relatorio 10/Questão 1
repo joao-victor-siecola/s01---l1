@@ -26,14 +26,14 @@ class Pokemon {
 
 class PokemonFogo extends Pokemon {
   atacar(alvo) {
-    console.log(`${this.nome} lança uma bola de fogo em ${alvo.nome}! 🔥`);
+    console.log(`${this.nome} lança uma bola de fogo em ${alvo.nome}! `);
     alvo.receberDano(20);
   }
 }
 
 class PokemonAgua extends Pokemon {
   atacar(alvo) {
-    console.log(`${this.nome} lança um jato d’água em ${alvo.nome}! 💧`);
+    console.log(`${this.nome} lança um jato d’água em ${alvo.nome}! `);
     alvo.receberDano(15);
   }
 }
@@ -50,3 +50,4 @@ p2.atacar(p1);
 
 console.log(`${p1.nome} tem ${p1.getVida()} de vida.`);
 console.log(`${p2.nome} tem ${p2.getVida()} de vida.`);
+
