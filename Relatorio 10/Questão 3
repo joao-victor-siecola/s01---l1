@@ -42,7 +42,7 @@ class CabanaMisterio {
   }
 
   listarFuncionarios() {
-    console.log("\n👥 Funcionários da Cabana Mistério:");
+    console.log("Funcionários da Cabana Mistério:");
     this.funcionarios.forEach((p) => console.log(`- ${p}`));
   }
 }
@@ -62,3 +62,4 @@ cabana.listarFuncionarios();
 const chave = prompt("\nDigite o autor para decodificar (ex: Dipper): ");
 const num = parseInt(prompt("Digite o número do enigma (0 ou 1): "));
 console.log(diario.decodificar(chave, num));
+
