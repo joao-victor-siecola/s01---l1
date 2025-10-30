@@ -1,0 +1,58 @@
+const prompt = require("prompt-sync")({ sigint: true });
+
+class ODM_Gear {
+  ativar() {
+    console.log("💨 ODM Gear ativado! Mobilidade aérea iniciada!");
+  }
+}
+
+class IExplorador {
+  explorar() {
+    throw new Error("O método explorar() deve ser implementado!");
+  }
+}
+
+class Soldado extends IExplorador {
+  constructor(nome) {
+    super();
+    this.nome = nome;
+    this.odm = new ODM_Gear(); 
+  }
+
+  explorar() {
+    console.log(`${this.nome} está explorando o território.`);
+  }
+
+  usarODM() {
+    this.odm.ativar();
+  }
+}
+
+class Esquadrao {
+  constructor() {
+    this.soldados = [];
+  }
+
+  adicionarSoldado(soldado) {
+    this.soldados.push(soldado);
+  }
+
+  iniciarMissao() {
+    console.log("\n🚀 Missão iniciada!");
+    this.soldados.forEach((s) => {
+      s.explorar();
+      s.usarODM();
+    });
+  }
+}
+
+
+const qtd = parseInt(prompt("Quantos soldados deseja adicionar? "));
+const esquadrao = new Esquadrao();
+
+for (let i = 0; i < qtd; i++) {
+  const nome = prompt(`Nome do soldado ${i + 1}: `);
+  esquadrao.adicionarSoldado(new Soldado(nome));
+}
+
+esquadrao.iniciarMissao();
