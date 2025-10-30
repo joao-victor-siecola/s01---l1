@@ -1,0 +1,64 @@
+const prompt = require("prompt-sync")({ sigint: true });
+
+class Diario {
+  #autorSecreto = "Dipper";
+
+  constructor() {
+    this.enigmas = new Map();
+  }
+
+  adicionarEnigma(chave, valor) {
+    this.enigmas.set(chave, valor);
+  }
+
+  decodificar(chave, num) {
+    if (chave === this.#autorSecreto) {
+      const enigmasArray = Array.from(this.enigmas.values());
+      return enigmasArray[num] || "Enigma não encontrado!";
+    } else {
+      return "Acesso negado!";
+    }
+  }
+}
+
+class Personagem {
+  constructor(nome, funcao) {
+    this.nome = nome;
+    this.funcao = funcao;
+  }
+
+  toString() {
+    return `${this.nome} (${this.funcao})`;
+  }
+}
+
+class CabanaMisterio {
+  constructor() {
+    this.funcionarios = [];
+  }
+
+  adicionarFuncionario(personagem) {
+    this.funcionarios.push(personagem);
+  }
+
+  listarFuncionarios() {
+    console.log("\n👥 Funcionários da Cabana Mistério:");
+    this.funcionarios.forEach((p) => console.log(`- ${p}`));
+  }
+}
+
+
+const diario = new Diario();
+diario.adicionarEnigma("1", "O portal está ativo!");
+diario.adicionarEnigma("2", "O código é 618!");
+
+const cabana = new CabanaMisterio();
+cabana.adicionarFuncionario(new Personagem("Soos", "Técnico"));
+cabana.adicionarFuncionario(new Personagem("Wendy", "Atendente"));
+cabana.adicionarFuncionario(new Personagem("Mabel", "Vendedora"));
+
+cabana.listarFuncionarios();
+
+const chave = prompt("\nDigite o autor para decodificar (ex: Dipper): ");
+const num = parseInt(prompt("Digite o número do enigma (0 ou 1): "));
+console.log(diario.decodificar(chave, num));
