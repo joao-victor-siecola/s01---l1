@@ -1,0 +1,52 @@
+// Instale o pacote para usar input via terminal: npm install prompt-sync
+const prompt = require("prompt-sync")({ sigint: true });
+
+class Pokemon {
+  #vida;
+
+  constructor(nome, tipo, vida) {
+    this.nome = nome;
+    this.tipo = tipo;
+    this.#vida = vida;
+  }
+
+  getVida() {
+    return this.#vida;
+  }
+
+  receberDano(valor) {
+    this.#vida -= valor;
+    if (this.#vida < 0) this.#vida = 0;
+  }
+
+  atacar(alvo) {
+    console.log(`${this.nome} ataca de forma genérica!`);
+  }
+}
+
+class PokemonFogo extends Pokemon {
+  atacar(alvo) {
+    console.log(`${this.nome} lança uma bola de fogo em ${alvo.nome}! 🔥`);
+    alvo.receberDano(20);
+  }
+}
+
+class PokemonAgua extends Pokemon {
+  atacar(alvo) {
+    console.log(`${this.nome} lança um jato d’água em ${alvo.nome}! 💧`);
+    alvo.receberDano(15);
+  }
+}
+
+
+const nome1 = prompt("Nome do Pokémon 1 (Fogo): ");
+const nome2 = prompt("Nome do Pokémon 2 (Água): ");
+
+const p1 = new PokemonFogo(nome1, "Fogo", 100);
+const p2 = new PokemonAgua(nome2, "Água", 100);
+
+p1.atacar(p2);
+p2.atacar(p1);
+
+console.log(`${p1.nome} tem ${p1.getVida()} de vida.`);
+console.log(`${p2.nome} tem ${p2.getVida()} de vida.`);
