@@ -37,7 +37,7 @@ class Batalhao {
 
   adicionarHunter(hunter) {
     if ([...this.hunters].some((h) => h.nome === hunter.nome)) {
-      console.log(`⚠️ Hunter ${hunter.nome} já existe no batalhão!`);
+      console.log(` Hunter ${hunter.nome} já existe no batalhão!`);
     } else {
       this.hunters.add(hunter);
     }
@@ -57,3 +57,4 @@ b.adicionarHunter(new Manipulador("Hisoka", "Cartas"));
 
 
 b.rastrearTodos();
+
