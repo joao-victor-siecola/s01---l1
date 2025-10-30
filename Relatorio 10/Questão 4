@@ -1,0 +1,59 @@
+class Hunter {
+  constructor(nome) {
+    this.nome = nome;
+  }
+
+  rastrearLocal() {
+    console.log(`${this.nome} está analisando o ambiente...`);
+  }
+}
+
+class Especialista extends Hunter {
+  constructor(nome, habilidade) {
+    super(nome);
+    this.habilidade = habilidade;
+  }
+
+  rastrearLocal() {
+    console.log(`${this.nome} usa ${this.habilidade} para detectar energia Nen!`);
+  }
+}
+
+class Manipulador extends Hunter {
+  constructor(nome, alvo) {
+    super(nome);
+    this.alvo = alvo;
+  }
+
+  rastrearLocal() {
+    console.log(`${this.nome} manipula o objeto ${this.alvo} para identificar o inimigo.`);
+  }
+}
+
+class Batalhao {
+  constructor() {
+    this.hunters = new Set();
+  }
+
+  adicionarHunter(hunter) {
+    if ([...this.hunters].some((h) => h.nome === hunter.nome)) {
+      console.log(`⚠️ Hunter ${hunter.nome} já existe no batalhão!`);
+    } else {
+      this.hunters.add(hunter);
+    }
+  }
+
+  rastrearTodos() {
+    console.log("\n📡 Rastreando todos os Hunters...");
+    this.hunters.forEach((h) => h.rastrearLocal());
+  }
+}
+
+
+const b = new Batalhao();
+
+b.adicionarHunter(new Especialista("Kurapika", "Correntes"));
+b.adicionarHunter(new Manipulador("Hisoka", "Cartas"));
+
+
+b.rastrearTodos();
