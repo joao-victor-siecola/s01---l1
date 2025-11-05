@@ -63,7 +63,7 @@ public class Main {
         String nome = sc.nextLine();
 
         System.out.print("Poder Mágico: ");
-        String poder = sc.nextLine(); // <-- agora texto é permitido ✅
+        String poder = sc.nextLine(); 
 
         Mago mago = new Mago(nome, poder);
         Castelo castelo = new Castelo();
@@ -80,3 +80,4 @@ public class Main {
         sc.close();
     }
 }
+
