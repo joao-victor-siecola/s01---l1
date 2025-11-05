@@ -1,0 +1,55 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+interface Rastreavel {
+    String obterCoordenadas();
+}
+
+class Poder {
+    private String tipo;
+    public Poder(String tipo) { this.tipo = tipo; }
+    public String getTipo() { return tipo; }
+}
+
+class Alien implements Rastreavel {
+    private String nome;
+    private Poder poder;
+
+    public Alien(String nome, String tipoPoder) {
+        this.nome = nome;
+        this.poder = new Poder(tipoPoder);
+    }
+
+    @Override
+    public String obterCoordenadas() {
+        return nome + " rastreado usando poder: " + poder.getTipo();
+    }
+}
+
+public class RegistroMain {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        HashMap<String, Rastreavel> registro = new HashMap<>();
+
+        while(true) {
+            System.out.print("Nome da entidade (ENTER para parar): ");
+            String nome = sc.nextLine();
+            if (nome.isEmpty()) break;
+
+            System.out.print("Tipo do poder: ");
+            String poder = sc.nextLine();
+
+            if (!registro.containsKey(nome)) {
+                registro.put(nome, new Alien(nome, poder));
+            } else {
+                System.out.println("⚠ Já existe essa entidade registrada.");
+            }
+        }
+
+        System.out.println("\nENTIDADES RASTREADAS:");
+        for (Rastreavel r : registro.values()) {
+            System.out.println(r.obterCoordenadas());
+        }
+        sc.close();
+    }
+}
