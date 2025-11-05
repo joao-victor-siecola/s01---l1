@@ -1,0 +1,74 @@
+import java.util.*;
+
+class Boss {
+    protected String nome;
+    protected String pontoFraco;
+    protected LinkedHashSet<String> moves = new LinkedHashSet<>();
+
+    public Boss(String nome, String pontoFraco) {
+        this.nome = nome;
+        this.pontoFraco = pontoFraco;
+    }
+
+    public void adicionarAtaque(String ataque) {
+        moves.add(attaque);
+    }
+
+    public void mostrarMoves() {
+        System.out.println("\nBoss: " + nome + " | Ponto Fraco: " + pontoFraco);
+        System.out.println("Ataques:");
+        for(String m : moves) System.out.println("- " + m);
+    }
+}
+
+class BossMagico extends Boss {
+    public BossMagico(String nome, String pontoFraco) {
+        super(nome, pontoFraco);
+    }
+}
+
+class Encontro {
+    private HashMap<String, Boss> batalhas = new HashMap<>();
+
+    public void adicionarBoss(String id, Boss b) {
+        batalhas.put(id, b);
+    }
+
+    public void iniciarBatalha(String id) {
+        if (batalhas.containsKey(id))
+            batalhas.get(id).mostrarMoves();
+        else
+            System.out.println("Nenhum boss com esse ID!");
+    }
+}
+
+public class ArenaMain {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Encontro arena = new Encontro();
+
+        System.out.print("ID do boss: ");
+        String id = sc.nextLine();
+        System.out.print("Nome do Boss: ");
+        String nome = sc.nextLine();
+        System.out.print("Ponto fraco: ");
+        String pf = sc.nextLine();
+
+        BossMagico b = new BossMagico(nome, pf);
+
+        while(true) {
+            System.out.print("Adicionar ataque (ENTER para parar): ");
+            String a = sc.nextLine();
+            if(a.isEmpty()) break;
+            b.adicionarAtaque(a);
+        }
+
+        arena.adicionarBoss(id, b);
+
+        System.out.print("\nDigite o ID para iniciar batalha: ");
+        String start = sc.nextLine();
+        arena.iniciarBatalha(start);
+
+        sc.close();
+    }
+}
