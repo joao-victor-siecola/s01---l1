@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Personagem {
+    private String nome;
+
+    public Personagem(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+}
+
+class Mago extends Personagem {
+    private String poderMagico;
+
+    public Mago(String nome, String poderMagico) {
+        super(nome);
+        this.poderMagico = poderMagico;
+    }
+
+    @Override
+    public String toString() {
+        return "Mago: " + getNome() + " | Poder Mágico: " + poderMagico;
+    }
+}
+
+class Divisao {
+    private String nome;
+
+    public Divisao(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+}
+
+class Castelo {
+    private ArrayList<Divisao> divisoes = new ArrayList<>();
+
+    public void adicionarDivisao(Divisao d) {
+        divisoes.add(d);
+    }
+
+    public void listarDivisoes() {
+        System.out.println("\nDivisões do Castelo:");
+        for (Divisao d : divisoes) {
+            System.out.println("- " + d);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nome do Mago: ");
+        String nome = sc.nextLine();
+
+        System.out.print("Poder Mágico: ");
+        String poder = sc.nextLine(); // <-- agora texto é permitido ✅
+
+        Mago mago = new Mago(nome, poder);
+        Castelo castelo = new Castelo();
+
+        while (true) {
+            System.out.print("Nome da divisão (ENTER para parar): ");
+            String d = sc.nextLine();
+            if (d.isEmpty()) break;
+            castelo.adicionarDivisao(new Divisao(d));
+        }
+
+        System.out.println("\n" + mago);
+        castelo.listarDivisoes();
+        sc.close();
+    }
+}
