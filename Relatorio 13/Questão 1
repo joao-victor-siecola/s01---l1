@@ -1,6 +1,3 @@
-;; ex1.lisp
-;; Exercicio 1 - Entrada do usuario
-
 (defun calcula-dosagem (peso-kg idade-anos)
   (cond
     ((or (< idade-anos 5) (< peso-kg 20)) 10)
@@ -31,3 +28,4 @@
 
 (format t "~%Dosagem: ~a mL~%" *dosagem*)
 (format t "Preco final: ~a~%" *preco-final*)
+
