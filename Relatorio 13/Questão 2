@@ -1,0 +1,45 @@
+;; ex2.lisp
+;; Exercicio 2 - Entrada do usuario
+
+(defstruct criatura nome ambiente periculosidade vida-media)
+
+(defun filtra-por-perigo (lista)
+  (remove-if
+   (lambda (c)
+     (string= (string-downcase (criatura-periculosidade c)) "baixa"))
+   lista))
+
+(defun relatorio-profundidade (lista)
+  (mapcar (lambda (c)
+            (format nil "~a vive em ~a"
+                    (criatura-nome c)
+                    (criatura-ambiente c)))
+          (remove-if-not
+           (lambda (c)
+             (string= (string-downcase (criatura-ambiente c)) "deep"))
+           lista)))
+
+(defparameter *catalogo* nil)
+
+(loop
+  (format t "~%Digite nome da criatura (ou ENTER para parar): ")
+  (let ((nome (read-line)))
+    (if (string= nome "")
+        (return)
+        (progn
+          (format t "Ambiente: ")
+          (let ((amb (read-line)))
+            (format t "Periculosidade: ")
+            (let ((per (read-line)))
+              (format t "Vida media: ")
+              (let ((vida (parse-integer (read-line))))
+                (push (make-criatura :nome nome :ambiente amb :periculosidade per :vida-media vida)
+                      *catalogo*))))))))
+
+(setq *catalogo* (reverse *catalogo*))
+
+(format t "~%Criaturas perigosas: ~a~%"
+        (mapcar #'criatura-nome (filtra-por-perigo *catalogo*)))
+
+(format t "~%Criaturas Deep: ~a~%"
+        (relatorio-profundidade *catalogo*))
