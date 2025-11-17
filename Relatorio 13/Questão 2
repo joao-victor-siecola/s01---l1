@@ -1,6 +1,3 @@
-;; ex2.lisp
-;; Exercicio 2 - Entrada do usuario
-
 (defstruct criatura nome ambiente periculosidade vida-media)
 
 (defun filtra-por-perigo (lista)
@@ -43,3 +40,4 @@
 
 (format t "~%Criaturas Deep: ~a~%"
         (relatorio-profundidade *catalogo*))
+
