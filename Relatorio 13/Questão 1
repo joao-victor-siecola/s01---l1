@@ -1,0 +1,33 @@
+;; ex1.lisp
+;; Exercicio 1 - Entrada do usuario
+
+(defun calcula-dosagem (peso-kg idade-anos)
+  (cond
+    ((or (< idade-anos 5) (< peso-kg 20)) 10)
+    ((and (>= idade-anos 5) (<= idade-anos 12) (>= peso-kg 20)) 25)
+    (t 50)))
+
+(defun ajusta-preco (preco-base nome-da-erva)
+  (let ((erva (string-downcase (string nome-da-erva))))
+    (cond
+      ((search "ginseng" erva) (* preco-base 3.0))
+      ((search "lotus" erva) (* preco-base 1.5))
+      (t preco-base))))
+
+(format t "Digite o peso do paciente (kg): ")
+(defparameter *peso* (parse-integer (read-line)))
+
+(format t "Digite a idade do paciente: ")
+(defparameter *idade* (parse-integer (read-line)))
+
+(format t "Digite o preco base da erva: ")
+(defparameter *preco-base* (parse-integer (read-line)))
+
+(format t "Digite o nome da erva: ")
+(defparameter *erva* (read-line))
+
+(defparameter *dosagem* (calcula-dosagem *peso* *idade*))
+(defparameter *preco-final* (ajusta-preco *preco-base* *erva*))
+
+(format t "~%Dosagem: ~a mL~%" *dosagem*)
+(format t "Preco final: ~a~%" *preco-final*)
