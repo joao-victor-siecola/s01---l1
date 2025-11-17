@@ -1,0 +1,43 @@
+;; ex3.lisp
+;; Exercicio 3 - Loja de Itens com entrada
+
+(defstruct item nome tipo preco forca-magica)
+
+(defun adiciona-imposto (preco)
+  (* preco 1.15))
+
+(defun bonus-maldicao (forca)
+  (if (> forca 80) (* forca 1.5) forca))
+
+(defun processa-venda (catalogo)
+  (let ((armas
+         (remove-if-not
+          (lambda (it)
+            (string= (string-downcase (item-tipo it)) "arma"))
+          catalogo)))
+    (mapcar (lambda (it)
+              (list (item-nome it)
+                    (adiciona-imposto (item-preco it))
+                    (bonus-maldicao (item-forca-magica it))))
+            armas)))
+
+(defparameter *catalogo* nil)
+
+(loop
+  (format t "~%Nome do item (ENTER para sair): ")
+  (let ((nome (read-line)))
+    (if (string= nome "")
+        (return)
+        (progn
+          (format t "Tipo: ")
+          (let ((tipo (read-line)))
+            (format t "Preco: ")
+            (let ((preco (parse-integer (read-line))))
+              (format t "Forca magica: ")
+              (let ((forca (parse-integer (read-line))))
+                (push (make-item :nome nome :tipo tipo :preco preco :forca-magica forca)
+                      *catalogo*))))))))
+
+(setq *catalogo* (reverse *catalogo*))
+
+(format t "~%Itens processados:~%~a~%" (processa-venda *catalogo*))
