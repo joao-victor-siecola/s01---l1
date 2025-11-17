@@ -1,6 +1,3 @@
-;; ex3.lisp
-;; Exercicio 3 - Loja de Itens com entrada
-
 (defstruct item nome tipo preco forca-magica)
 
 (defun adiciona-imposto (preco)
@@ -41,3 +38,4 @@
 (setq *catalogo* (reverse *catalogo*))
 
 (format t "~%Itens processados:~%~a~%" (processa-venda *catalogo*))
+
