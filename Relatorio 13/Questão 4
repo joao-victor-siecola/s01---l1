@@ -1,6 +1,3 @@
-;; ex4.lisp
-;; Exercicio 4 - Ocorrencias com entrada do usuario
-
 (defstruct ocorrencia nome ritual nivel-medo agentes-enviados)
 
 (defun soma-medo-recursiva (lst)
@@ -40,3 +37,4 @@
 
 (format t "~%Ocorrencias criticas: ~a~%"
         (mapcar #'ocorrencia-nome (analise-final *lista*)))
+
