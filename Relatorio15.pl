@@ -68,6 +68,9 @@ especialista_comp(Aluno) :-
     disciplina(D2, _, computacao),
     D1 \= D2.
 
+deficiencia_mat(Aluno) :-
+ \+ (concluiu(Aluno, D), disciplina(D, _, matematica)).
+
 disciplina_raiz(D) :-
     disciplina(D, _, _),
     \+ prerequisito(D, _).
